@@ -1,24 +1,13 @@
-/* body {
+main {
     display: flex;
-}
-
-h1 {
-    display: flex;
-    justify-content: center;
-}
-
-#game-board {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
     flex-wrap: wrap;
+    width: 100vh;
 }
 
 .space {
-    font-size: 15vh;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    align-items: center;
-} */
+    font-size: 20vh;
+    width: 30vh;
+    height: 30vh;
+    border: 2px solid black;
+    padding: 5px;
+}
