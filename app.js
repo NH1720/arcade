@@ -19,6 +19,7 @@ function renderState() {
         let card = gameState.board[i];
         const cardElem = document.createElement("div");
         cardElem.classList.add("space");
+        cardElem.dataset.index = i;
         cardElem.innerText = card;
         boardElem.appendChild(cardElem);
     }
@@ -30,7 +31,7 @@ boardElem.addEventListener('click', function (event) {
     if (event.target.className === 'space') {
         console.log("click");
         const spaceIdx = event.target.dataset.index;
-        gameState.board[spaceIdx] = "";
+        gameState.board[spaceIdx] = "x";
         renderState();
     }
 });
