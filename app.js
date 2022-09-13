@@ -5,7 +5,7 @@ const gameState = {};
 function buildInintialState() {
     gameState.players = ["x", "o"];
     gameState.board = [
-        null, null, null,
+        'nate', null, null,
         null, null, null,
         null, null, null
     ];
@@ -25,9 +25,15 @@ function renderState() {
 }
 
 
-boardElem.addEventListener('click', function(event) {
-    console.log('click')
-})
+boardElem.addEventListener('click', function (event) {
+    console.log('this', this)
+    if (event.target.className === 'space') {
+        console.log("click");
+        const spaceIdx = event.target.dataset.index;
+        gameState.board[spaceIdx] = "";
+        renderState();
+    }
+});
 
 buildInintialState();
 renderState();
