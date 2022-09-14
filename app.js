@@ -17,18 +17,15 @@ const boardElem = document.querySelector("#board");
 //renders
 function renderState() {
     boardElem.innerHTML = "";
-    // for (let i = 0; i < gameState.players.length; i++) {
-
-    // }
     for (let i = 0; i < gameState.board.length; i++) {
-        let card = gameState.board[i];
+        const card = gameState.board[i];
         const cardElem = document.createElement("div");
-        cardElem.classList.add("space");
+        cardElem.classList.add('space');
         cardElem.dataset.index = i;
         cardElem.innerText = card;
         boardElem.appendChild(cardElem);
     }
-}
+};
 
 //listeners
 boardElem.addEventListener('click', function (event) {

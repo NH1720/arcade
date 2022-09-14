@@ -34,6 +34,7 @@ h1 {
     display: flex;
     margin: 12vh;
     width: 15vh;
+    flex-direction: row;
 }
 
 input {
