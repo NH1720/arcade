@@ -5,7 +5,7 @@ const gameState = {};
 function buildInintialState() {
     gameState.players = ["x", "o"];
     gameState.board = [
-        'nate', null, null,
+        null, null, null,
         null, null, null,
         null, null, null
     ];
@@ -13,8 +13,13 @@ function buildInintialState() {
 
 const boardElem = document.querySelector("#board");
 
+
+//renders
 function renderState() {
     boardElem.innerHTML = "";
+    // for (let i = 0; i < gameState.players.length; i++) {
+
+    // }
     for (let i = 0; i < gameState.board.length; i++) {
         let card = gameState.board[i];
         const cardElem = document.createElement("div");
@@ -25,11 +30,9 @@ function renderState() {
     }
 }
 
-
+//listeners
 boardElem.addEventListener('click', function (event) {
-    console.log('this', this)
     if (event.target.className === 'space') {
-        console.log("click");
         const spaceIdx = event.target.dataset.index;
         gameState.board[spaceIdx] = "x";
         renderState();
@@ -45,5 +48,9 @@ renderState();
 function onBoardClick() {
 
 };
+
+
+
+
 
 
