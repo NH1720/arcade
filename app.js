@@ -3,7 +3,6 @@ const gameState = {};
   
 //populates the gameState object with starting info 
 function buildInintialState() {
-    gameState.players = ["x", "o"];
     gameState.board = [
         null, null, null,
         null, null, null,
@@ -56,8 +55,7 @@ function renderPlayer() {
         text = `
         <input name="player1" placeholer="player1">    
         <input name="player2" placeholer="player2">    
-        <button class="start">Start Game<button>
-        `
+        <button class="start">Start Game<button>`
     } else {
         text = `It's currently <span class="player">${gameState.getCurrentPlayer()}</span>'s turn`
     }
@@ -134,15 +132,6 @@ buildInintialState();
 renderState();
 renderPlayer();
 
-//helper functions
 
-//listeners
-function onBoardClick() {
-
-};
-
-
-
-//input players
 
 
