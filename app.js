@@ -4,14 +4,20 @@ const gameState = {};
 //populates the gameState object with starting info 
 function buildInintialState() {
     gameState.board = [
-        null, null, null,
-        null, null, null,
-        null, null, null
+        { value: null , isTurned: false},
+        { value: null , isTurned: false},
+        { value: null , isTurned: false},
+        { value: null , isTurned: false},
+        { value: null , isTurned: false},
+        { value: null , isTurned: false},
+        { value: null , isTurned: false},
+        { value: null , isTurned: false},
+        { value: null , isTurned: false},
     ];
-    gameState.currentPlayer = ["Jack", "Jill"];
+    gameState.currentPlayer = ["", ""];
     gameState.currentPlayerIdx = 0;
     gameState.getCurrentPlayer = function () {
-        return gameState.currentPlayer[gameState.currentPlayerIdx]
+        return gameState.currentPlayer[gameState.currentPlayerIdx];
     };
     gameState.scores = [0, 0];
     gameState.lastTurnedIdx = -1;
@@ -22,98 +28,80 @@ const boardElem = document.querySelector("#board");
 const playerTurnElm = document.querySelector("#player-turn");
 const scoreElm = document.querySelector('#score');
 
-
-
 //game logic
-
 function changeTurn() {
-    if (gameState.currentPlayerIdx === 0) {
-        gameState.currentPlayerIdx = 1;
-    } else {
-        gameState.currentPlayerIdx = 0;
-    };
-}
-
-
+    gameState.currentPlayerIdx = gameState.currentPlayerIdx === 0 ? 1 : 0;
+};
 
 //renders
+
+//renderState
 function renderState() {
     boardElem.innerHTML = "";
     for (let i = 0; i < gameState.board.length; i++) {
         const card = gameState.board[i];
         const cardElem = document.createElement("div");
         cardElem.classList.add('space');
+        if (card.isTurned) {
+            cardElem.innerText = card.value;
+        };
         cardElem.dataset.index = i;
-        cardElem.innerText = card;
         boardElem.appendChild(cardElem);
     }
 };
-
+//renderPlayer
 function renderPlayer() {
     let text;
-    if (!gameState.currentPlayer[0] || !gameState.currentPlayer[1]) {
-        text = `
-        <input name="player1" placeholer="player1">    
-        <input name="player2" placeholer="player2">    
-        <button class="start">Start Game<button>`
-    } else {
-        text = `It's currently <span class="player">${gameState.getCurrentPlayer()}</span>'s turn`
-    }
     text = `It's currently ${gameState.getCurrentPlayer()}'s turn`;
-    playerTurnElm.innerHTML = text;
-}
-
-
-
+    playerTurnElm.innerText = text;
+};
+//renderScore
 function renderScore() {
     scoreElm.innerHTML = `
     ${gameState.currentPlayer[0]}: ${gameState.scores[0]}</div> 
     ${gameState.currentPlayer[1]}: ${gameState.scores[1]} 
     `;
-}
-
-
-
+};
+//renderAll
 function render() {
-    renderBoard();
+    renderState();
     renderPlayer();
     renderScore();
-}
+};
 
 
 //click
 function takeTurn(cardIdx) {
     if (!gameState.currentPlayer[0] || !gameState.currentPlayer[1]) {
         return;
-    }
+    };
     gameState.board[cardIdx].isTurned = true;
     gameState.scores[gameState.currentPlayerIdx]++;
     const card = gameState.board[cardIdx]; 
     if (card.isTurned) {
         return;
-    }
+    };
     const lastTurnedCard = gameState.board[gameState.lastTurnedIdx];
     if (card.value === lastTurnedCard.value) {
         state.scores[state.currentPlayer]++
-    }
+    };
 };
 
 //listeners
 boardElem.addEventListener('click', function (event) {
     if (event.target.className !== 'space') {
         return;
-    }
+    };
+    console.log('event', event.target);
     const cardIdx = event.target.dataset.index;
     const card = gameState.board[cardIdx];
     if (card.isTurned) {
         return;
-    }
+    };
     gameState.board[cardIdx].isTurned = true;
     changeTurn();
-        const spaceIdx = event.target.dataset.index;
-        gameState.board[spaceIdx] = "x";
-        renderState();
-    
+    console.log('currentPlayer', gameState.getCurrentPlayer());
+    render();
 });
 
 
@@ -126,11 +114,10 @@ playerTurnElm.addEventListener ("click", function(event) {
     gameState.currentPlayer[0] = player1Input.value;
     gameState.currentPlayer[1] = player2Input.value;
     render();
-})
+});
 
 buildInintialState();
-renderState();
-renderPlayer();
+render();
 
 
 
