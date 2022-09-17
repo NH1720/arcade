@@ -1,90 +1,90 @@
-//creates the game state object
-// const gameState = {};
+// //creates the game state object
+// // const gameState = {};
   
-//populates the gameState object with starting info 
-function buildInintialState() {
-    gameState.board = [
-        { value: null, isTurned: false},
-        { value: null, isTurned: false},
-        { value: null, isTurned: false},
-        { value: null, isTurned: false},
-        { value: null, isTurned: false},
-        { value: null, isTurned: false},
-        { value: null, isTurned: false},
-        { value: null, isTurned: false},
-        { value: null, isTurned: false},
-    ];
-    gameState.players = ["", ""];
-    gameState.currentPlayerIdx = 0;
-    gameState.getCurrentPlayer = function () {
-        return gameState.players[gameState.currentPlayerIdx];
-    };
-    gameState.lastTurnedIdx = -1;
-};
+// //populates the gameState object with starting info 
+// function buildInintialState() {
+//     gameState.board = [
+//         { value: null, isTurned: false},
+//         { value: null, isTurned: false},
+//         { value: null, isTurned: false},
+//         { value: null, isTurned: false},
+//         { value: null, isTurned: false},
+//         { value: null, isTurned: false},
+//         { value: null, isTurned: false},
+//         { value: null, isTurned: false},
+//         { value: null, isTurned: false},
+//     ];
+//     gameState.players = ["", ""];
+//     gameState.currentPlayerIdx = 0;
+//     gameState.getCurrentPlayer = function () {
+//         return gameState.players[gameState.currentPlayerIdx];
+//     };
+//     gameState.lastTurnedIdx = -1;
+// };
 
-//selectors
-// const boardElem = document.querySelector("#board");
-// const playerTurnElm = document.querySelector("#player-turn");
-// const scoreElm = document.querySelector('#score');
+// //selectors
+// // const boardElem = document.querySelector("#board");
+// // const playerTurnElm = document.querySelector("#player-turn");
+// // const scoreElm = document.querySelector('#score');
 
-//game logic
-function changeTurn() {
-    gameState.currentPlayerIdx = gameState.currentPlayerIdx === 0 ? 1 : 0;
-};
+// //game logic
+// function changeTurn() {
+//     gameState.currentPlayerIdx = gameState.currentPlayerIdx === 0 ? 1 : 0;
+// };
 
-//renders
+// //renders
 
-//renderState
-function renderState() {
-    boardElem.innerHTML = "";
-    for (let i = 0; i < gameState.board.length; i++) {
-        const card = gameState.board[i];
-        const cardElem = document.createElement("div");
-        cardElem.classList.add('space');
-        if (card.isTurned) {
-            cardElem.innerText = card.value;
-        };
-        cardElem.dataset.index = i;
-        boardElem.appendChild(cardElem);
-    }
-};
-//renderPlayer
-function renderPlayer() {
-    let text;
-    text = `It's currently ${gameState.getCurrentPlayer()}'s turn`;
-    playerTurnElm.innerText = text;
-};
-//renderScore
-function renderScore() {
-    scoreElm.innerHTML = `
-    ${gameState.currentPlayer[0]}: ${gameState.scores[0]} 
-    ${gameState.currentPlayer[1]}: ${gameState.scores[1]} 
-    `;
-};
-//renderAll
-function render() {
-    renderState();
-    renderPlayer();
-    renderScore();
-};
+// //renderState
+// function renderState() {
+//     boardElem.innerHTML = "";
+//     for (let i = 0; i < gameState.board.length; i++) {
+//         const card = gameState.board[i];
+//         const cardElem = document.createElement("div");
+//         cardElem.classList.add('space');
+//         if (card.isTurned) {
+//             cardElem.innerText = card.value;
+//         };
+//         cardElem.dataset.index = i;
+//         boardElem.appendChild(cardElem);
+//     }
+// };
+// //renderPlayer
+// function renderPlayer() {
+//     let text;
+//     text = `It's currently ${gameState.getCurrentPlayer()}'s turn`;
+//     playerTurnElm.innerText = text;
+// };
+// //renderScore
+// function renderScore() {
+//     scoreElm.innerHTML = `
+//     ${gameState.currentPlayer[0]}: ${gameState.scores[0]} 
+//     ${gameState.currentPlayer[1]}: ${gameState.scores[1]} 
+//     `;
+// };
+// //renderAll
+// function render() {
+//     renderState();
+//     renderPlayer();
+//     renderScore();
+// };
 
 
-//click
-function takeTurn(cardIdx) {
-    if (!gameState.currentPlayer[0] || !gameState.currentPlayer[1]) {
-        return;
-    };
-    gameState.board[cardIdx].isTurned = true;
-    gameState.scores[gameState.currentPlayerIdx]++;
-    const card = gameState.board[cardIdx]; 
-    if (card.isTurned) {
-        return;
-    };
-    const lastTurnedCard = gameState.board[gameState.lastTurnedIdx];
-    if (card.value === lastTurnedCard.value) {
-        state.scores[state.currentPlayer]++
-    };
-};
+// //click
+// function takeTurn(cardIdx) {
+//     if (!gameState.currentPlayer[0] || !gameState.currentPlayer[1]) {
+//         return;
+//     };
+//     gameState.board[cardIdx].isTurned = true;
+//     gameState.scores[gameState.currentPlayerIdx]++;
+//     const card = gameState.board[cardIdx]; 
+//     if (card.isTurned) {
+//         return;
+//     };
+//     const lastTurnedCard = gameState.board[gameState.lastTurnedIdx];
+//     if (card.value === lastTurnedCard.value) {
+//         state.scores[state.currentPlayer]++
+//     };
+// };
 
 //listeners
 // boardElem.addEventListener('click', function (event) {
